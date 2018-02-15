@@ -3,25 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Net.Sockets;
 using System.Net;
-namespace galhutunetwork1
+using System.Net.Sockets;
+
+namespace ServerSide
 {
-    class Program   
+    class Program
     {
         static void Main(string[] args)
         {
-            //IPEndPoint localEP= new IPEndPoint
+            Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            IPAddress ip = IPAddress.Parse("127.0.0.1");
 
-            Socket s = new Socket(AddressFamily.InterNetwork,
-            SocketType.Dgram, ProtocolType.Udp);
-//test
+            string classArgs = args[0];
+            int port = int.Parse(classArgs);
 
-            IPAddress ipa = IPAddress.Parse("127.0.0.1");
-            Console.WriteLine("IP address is=" + ipa.ToString());
+            IPEndPoint localEP = new IPEndPoint(ip, port);
 
-            Console.WriteLine("IP address is=" + IPAddress.Loopback.ToString());
-            Console.WriteLine("Broadcast address is=" + IPAddress.Broadcast.ToString());
+            Console.WriteLine("returned port is : " + port);
+            Console.WriteLine("server started");
+
+            socket.Bind(localEP);
+            EndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0);
+
+            int noOfBytesReceived;
+            Byte[] bytesReceived;
+            while (true)
+            {
+                noOfBytesReceived = 0;
+                bytesReceived = new Byte[1024];
+                noOfBytesReceived = socket.ReceiveFrom(bytesReceived, ref remoteEP);
+
+                string message = Encoding.ASCII.GetString(bytesReceived, 0, noOfBytesReceived);
+
+                switch (message)
+                {
+                    case "join":
+                        Console.WriteLine("client joined");
+                        break;
+                    case "quit":
+                        Console.WriteLine("client quit");
+                        break;
+                    default:
+                        break;
+                }
+            }
         }
+
     }
 }
