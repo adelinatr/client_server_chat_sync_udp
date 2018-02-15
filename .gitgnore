@@ -1,2 +1,4 @@
 *.user
 *.suo
+*.exe
+*.pbd
