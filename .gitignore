@@ -6,3 +6,6 @@
 server/server/bin/
 server/server/obj/
 server/.vs
+client/client/bin/
+client/client/obj/
+client/.vs
