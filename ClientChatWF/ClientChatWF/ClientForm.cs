@@ -31,5 +31,27 @@ namespace ClientChatWF
 				chatLog.ScrollBars = ScrollBars.Vertical;
 			}
 		}
+		private void ClientForm_ResizeBegin(object sender, EventArgs e)
+		{
+			oldHeight = this.Height;
+			oldWidth = this.Width;
+		}
+
+		private void ClientForm_ResizeEnd(object sender, EventArgs e)
+		{
+			int heightDiff = oldHeight - this.Height;
+			int widthDiff = oldWidth - this.Width;
+
+			chatLog.Width -= widthDiff;
+			chatLog.Height -= heightDiff;
+
+			textBoxMessage.Top -= heightDiff;
+			textBoxMessage.Width -= widthDiff;
+
+			buttonSend.Top -= heightDiff;
+			buttonSend.Left -= widthDiff;
+
+			statusLabel.Width -= widthDiff;
+		}
 	}
 }
