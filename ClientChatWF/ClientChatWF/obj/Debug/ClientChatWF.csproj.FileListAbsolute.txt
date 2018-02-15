@@ -1,1 +1,0 @@
-C:\Users\student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\ClientChatWF\ClientChatWF\bin\Debug\ClientChatWF.exe.config
