@@ -1,4 +1,4 @@
-﻿namespace ClientChatWF
+namespace ClientChatWF
 {
 	partial class ClientForm
 	{
@@ -145,6 +145,7 @@
 			this.chatLog.Multiline = true;
 			this.chatLog.Name = "chatLog";
 			this.chatLog.ReadOnly = true;
+			this.chatLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.chatLog.Size = new System.Drawing.Size(600, 380);
 			this.chatLog.TabIndex = 16;
 			// 
@@ -168,6 +169,8 @@
 			this.Controls.Add(this.statusLabel);
 			this.Name = "ClientForm";
 			this.Text = "Chat";
+			this.ResizeBegin += new System.EventHandler(this.ClientForm_ResizeBegin);
+			this.ResizeEnd += new System.EventHandler(this.ClientForm_ResizeEnd);
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -188,4 +191,3 @@
 		private System.Windows.Forms.TextBox chatLog;
 	}
 }
-
