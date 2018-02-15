@@ -1,0 +1,8 @@
+*.user
+*.suo
+*.exe
+*.pbd
+*.cache
+server/server/bin/
+server/server/obj/
+server/.vs
