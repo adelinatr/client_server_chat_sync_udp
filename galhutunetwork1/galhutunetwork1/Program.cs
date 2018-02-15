@@ -15,7 +15,7 @@ namespace galhutunetwork1
 
             Socket s = new Socket(AddressFamily.InterNetwork,
             SocketType.Dgram, ProtocolType.Udp);
-
+//test
 
             IPAddress ipa = IPAddress.Parse("127.0.0.1");
             Console.WriteLine("IP address is=" + ipa.ToString());
