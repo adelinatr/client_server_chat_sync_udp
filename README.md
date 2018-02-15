@@ -18,7 +18,6 @@ Create main loop logic that interprets messages like: join, quit and default(swi
   - In the main loop, the server shows ">> Waiting"
 Add possibility to accept connections from multiple clients: use a list of clients(use ArrayList)
 Add windows form for the server and show the list of clients that are connected and port
-//ana are mere
 
 Client
 Windows forms application
