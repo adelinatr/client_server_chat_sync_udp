@@ -1,0 +1,6 @@
+*.user
+*.suo
+*.exe
+*.pbd
+*.cache
+*.manifest
