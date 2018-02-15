@@ -14,44 +14,46 @@ namespace ClientChatWF
 {
 	public partial class ClientForm : Form
 	{
+		int oldHeight;
+		int oldWidth;
         Socket client;
         IPEndPoint remoteEp;
-		public ClientForm()
+
+        public ClientForm()
 		{
 			InitializeComponent();
-		}
+			textBoxIPAdress.Text = "127.0.0.1";
+			textBoxPort.Text = "9000";
+        }
 
 		private void buttonJoin_Click(object sender, EventArgs e)
 		{
-
             client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
             client.SendTo(Encoding.ASCII.GetBytes("join"), remoteEp);
-            
-          
+        }
+
+        private void ClientForm_ResizeBegin(object sender, EventArgs e)
+		{
+			oldHeight = this.Height;
+			oldWidth = this.Width;
 		}
 
-        private void textBoxIPAdress_TextChanged(object sender, EventArgs e)
-        {
-            if(textBoxIPAdress.Text!="127.0.0.1")
-            {
-                return;
-            }
-            string ip;
-            ip = textBoxIPAdress.Text;
+		private void ClientForm_ResizeEnd(object sender, EventArgs e)
+		{
+			int heightDiff = oldHeight - this.Height;
+			int widthDiff = oldWidth - this.Width;
 
-            IPAddress ipa = IPAddress.Parse(ip);
+			chatLog.Width -= widthDiff;
+			chatLog.Height -= heightDiff;
 
-        }
+			textBoxMessage.Top -= heightDiff;
+			textBoxMessage.Width -= widthDiff;
 
-        private void buttonQuit_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+			buttonSend.Top -= heightDiff;
+			buttonSend.Left -= widthDiff;
 
-        private void textBoxPort_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-    }
+			statusLabel.Width -= widthDiff;
+		}
+	}
 }
