@@ -14,10 +14,15 @@ namespace ClientChatWF
 {
 	public partial class ClientForm : Form
 	{
+		int oldHeight;
+		int oldWidth;
 		public ClientForm()
 		{
 			InitializeComponent();
-		}
+			chatLog.ScrollBars = ScrollBars.Vertical;
+			textBoxIPAdress.Text = "127.0.0.1";
+			textBoxPort.Text = "9000";
+        }
 
 		private void buttonJoin_Click(object sender, EventArgs e)
 		{
@@ -28,7 +33,6 @@ namespace ClientChatWF
 			catch (Exception ex)
 			{
 				chatLog.Text += $"{DateTime.Now.ToString("h:mm:ss tt")}: {ex.Message}\r\n";
-				chatLog.ScrollBars = ScrollBars.Vertical;
 			}
 		}
 		private void ClientForm_ResizeBegin(object sender, EventArgs e)
