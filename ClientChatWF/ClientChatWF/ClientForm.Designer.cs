@@ -86,6 +86,7 @@ namespace ClientChatWF
 			this.buttonQuit.TabIndex = 6;
 			this.buttonQuit.Text = "Quit";
 			this.buttonQuit.UseVisualStyleBackColor = true;
+			this.buttonQuit.Click += new System.EventHandler(this.buttonQuit_Click);
 			// 
 			// textBoxIPAdress
 			// 

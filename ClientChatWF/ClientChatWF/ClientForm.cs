@@ -28,11 +28,16 @@ namespace ClientChatWF
 			try
 			{
 				UdpClient client = new UdpClient(textBoxIPAdress.Text, int.Parse(textBoxPort.Text));
+				//todo
             }
 			catch (Exception ex)
 			{
 				chatLog.Text += $"{DateTime.Now.ToString("h:mm:ss tt")}: {ex.Message}\r\n";
 			}
+		}
+		private void buttonQuit_Click(object sender, EventArgs e)
+		{
+			//todo
 		}
 		private void ClientForm_ResizeBegin(object sender, EventArgs e)
 		{
