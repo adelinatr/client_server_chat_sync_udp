@@ -1,1 +1,0 @@
-E:\stepit\networkprogramming\client_server\2\client_server_chat_sync_udp\server\server\bin\Debug\server.exe.config
