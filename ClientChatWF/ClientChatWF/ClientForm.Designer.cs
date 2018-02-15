@@ -145,6 +145,7 @@ namespace ClientChatWF
 			this.chatLog.Multiline = true;
 			this.chatLog.Name = "chatLog";
 			this.chatLog.ReadOnly = true;
+			this.chatLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
 			this.chatLog.Size = new System.Drawing.Size(600, 380);
 			this.chatLog.TabIndex = 16;
 			// 
