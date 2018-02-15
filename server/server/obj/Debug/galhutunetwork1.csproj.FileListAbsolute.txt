@@ -1,2 +1,0 @@
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\galhutunetwork1\galhutunetwork1\bin\Debug\galhutunetwork1.exe.config
-E:\stepit\networkprogramming\client_server\client_server_chat_sync_udp\galhutunetwork1\galhutunetwork1\bin\Debug\galhutunetwork1.exe.config
