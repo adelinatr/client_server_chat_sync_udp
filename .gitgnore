@@ -2,6 +2,7 @@
 *.suo
 *.exe
 *.pbd
-galhutunetwork1/galhutunetwork1/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
-galhutunetwork1/.vs/galhutunetwork1/v14/.suo
-galhutunetwork1/galhutunetwork1/obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
+*.cache
+server/server/bin/
+server/server/obj/
+server/.vs
