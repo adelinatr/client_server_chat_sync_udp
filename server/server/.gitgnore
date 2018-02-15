@@ -4,3 +4,5 @@
 *.pbd
 *.cache
 *.manifest
+*bin
+*obj
