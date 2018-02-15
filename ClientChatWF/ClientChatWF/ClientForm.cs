@@ -19,7 +19,6 @@ namespace ClientChatWF
 		public ClientForm()
 		{
 			InitializeComponent();
-			chatLog.ScrollBars = ScrollBars.Vertical;
 			textBoxIPAdress.Text = "127.0.0.1";
 			textBoxPort.Text = "9000";
         }
