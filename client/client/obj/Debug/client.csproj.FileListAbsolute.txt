@@ -1,0 +1,1 @@
+C:\Users\matei\Documents\GitHub\client_server_chat_sync_udp\client\client\bin\Debug\ClientChatWF.exe.config
