@@ -51,6 +51,8 @@ namespace ClientChatWF
             if (isConnected)
             {
                 client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
+                chatLog.Text += $"{textBoxMessage.Text}\r\n";
+                textBoxMessage.Text = "";
             }
         }
         private void buttonQuit_Click(object sender, EventArgs e)
