@@ -18,6 +18,7 @@ namespace ClientChatWF
 		int oldWidth;
         Socket client;
         IPEndPoint remoteEp;
+        bool isConnected = false;
 
         public ClientForm()
 		{
@@ -26,11 +27,40 @@ namespace ClientChatWF
 			textBoxPort.Text = "9000";
         }
 
-		private void buttonJoin_Click(object sender, EventArgs e)
-		{
-            client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
-            client.SendTo(Encoding.ASCII.GetBytes("join"), remoteEp);
+        private void buttonJoin_Click(object sender, EventArgs e)
+        {
+            if (!isConnected)
+            {
+                try
+                {
+                    client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                    remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
+                    client.SendTo(Encoding.ASCII.GetBytes("join"), remoteEp);
+                    isConnected = true;
+                    statusLabel.Text = "Connected";
+                }
+                catch(Exception ex)
+                {
+                    chatLog.Text += $"{ex.Message}\r\n";
+                }
+            }
+        }
+
+        private void buttonSend_Click(object sender, EventArgs e)
+        {
+            if (isConnected)
+            {
+                client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
+            }
+        }
+        private void buttonQuit_Click(object sender, EventArgs e)
+        {
+            if (isConnected)
+            {
+                client.SendTo(Encoding.ASCII.GetBytes("quit"), remoteEp);
+                isConnected = false;
+                statusLabel.Text = "Disconnected";
+            }
         }
 
         private void ClientForm_ResizeBegin(object sender, EventArgs e)
@@ -55,5 +85,5 @@ namespace ClientChatWF
 
 			statusLabel.Width -= widthDiff;
 		}
-	}
+    }
 }
