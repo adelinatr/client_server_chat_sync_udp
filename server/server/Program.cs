@@ -52,7 +52,14 @@ namespace ServerSide
 						clients.RemoveAt(clients.IndexOf(remoteEP));
                         Console.WriteLine($"{user} quit");
                         break;
-                    default:
+					case "gettime":
+						Console.WriteLine($"{user} actual time");
+						string actual_time = DateTime.Now.ToString("hh:mm:ss tt");
+						byte[] bytes = Encoding.ASCII.GetBytes(actual_time);
+						socket.SendTo(bytes, remoteEP);
+
+						break;
+					default:
                         Console.WriteLine($"{user}: {text}");
                         break;
                 }

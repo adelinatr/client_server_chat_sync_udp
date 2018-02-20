@@ -17,7 +17,7 @@ namespace ClientChatWF
 		int oldHeight;
 		int oldWidth;
 		Socket client;
-		IPEndPoint remoteEp;
+		EndPoint remoteEp;
 		bool isConnected = false;
 
 		public ClientForm()
@@ -89,6 +89,21 @@ namespace ClientChatWF
 			buttonSend.Left -= widthDiff;
 
 			statusLabel.Width -= widthDiff;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			//String Data = Encoding.ASCII.GetString(data);
+			byte[] time = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:gettime");
+			client.SendTo(time, time.Length, SocketFlags.None, remoteEp);
+		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+			byte[] received_time = new byte[1024];
+			client.ReceiveFrom(received_time, ref remoteEp);
+			String time = System.Text.Encoding.UTF8.GetString(received_time);
+			label4.Text = time;
 		}
 	}
 }
