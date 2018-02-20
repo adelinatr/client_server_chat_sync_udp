@@ -16,24 +16,31 @@ namespace ClientChatWF
 	{
 		int oldHeight;
 		int oldWidth;
-        Socket client;
-        IPEndPoint remoteEp;
+		Socket client;
+		IPEndPoint remoteEp;
 
-        public ClientForm()
+		public ClientForm()
 		{
 			InitializeComponent();
 			textBoxIPAdress.Text = "127.0.0.1";
 			textBoxPort.Text = "9000";
-        }
+		}
 
 		private void buttonJoin_Click(object sender, EventArgs e)
 		{
-            client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
-            client.SendTo(Encoding.ASCII.GetBytes("join"), remoteEp);
+			try
+			{
+				client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+				remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
+				client.SendTo(Encoding.ASCII.GetBytes("join"), remoteEp);
+			}
+			catch (Exception ex)
+			{
+				chatLog.Text += $"{DateTime.Now.ToString("h:mm:ss tt")}: {ex.Message}\r\n";
+			}
         }
 
-        private void ClientForm_ResizeBegin(object sender, EventArgs e)
+		private void ClientForm_ResizeBegin(object sender, EventArgs e)
 		{
 			oldHeight = this.Height;
 			oldWidth = this.Width;
