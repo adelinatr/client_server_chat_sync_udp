@@ -39,20 +39,21 @@ namespace ServerSide
                 string message = Encoding.ASCII.GetString(bytesReceived, 0, noOfBytesReceived);
 				
 				int separatorIndex = message.IndexOf(':') + 1;
-				string tmp = message.Substring(separatorIndex);
+				string user = message.Substring(0, separatorIndex);
+				string text = message.Substring(separatorIndex);
 
-				switch (tmp)
+				switch (text)
                 {
                     case "join":
                         clients.Add(remoteEP);
-                        Console.WriteLine("client joined");
+                        Console.WriteLine($"{user} joined");
                         break;
                     case "quit":
 						clients.RemoveAt(clients.IndexOf(remoteEP));
-                        Console.WriteLine("client quit");
+                        Console.WriteLine($"{user} quit");
                         break;
                     default:
-                        Console.WriteLine($"client: {message}");
+                        Console.WriteLine($"{user}: {text}");
                         break;
                 }
             }
