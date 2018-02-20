@@ -19,7 +19,6 @@ Create main loop logic that interprets messages like: join, quit and default(swi
 Add possibility to accept connections from multiple clients: use a list of clients(use ArrayList)
 Add windows form for the server and show the list of clients that are connected and port
 
-
 Client
 Windows forms application
 
@@ -28,5 +27,3 @@ Create windows Forms that looks like preview client image
   - On button Quit event click: message quit is sent to the server
   - On button Send, the message in the text area, it is sent to the server. Create a method “Send" that represents the callback for a newly created thread
   -  Window title: “Connected to <server name> on <port no>"
-  
-  
