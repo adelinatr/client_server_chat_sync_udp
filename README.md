@@ -29,8 +29,3 @@ Create windows Forms that looks like preview client image
   - On button Quit event click: message quit is sent to the server
   - On button Send, the message in the text area, it is sent to the server. Create a method “Send" that represents the callback for a newly created thread
   -  Window title: “Connected to <server name> on <port no>"
-
-  
-  
-  
-  
