@@ -26,6 +26,8 @@ namespace ServerSide
             socket.Bind(localEP);
             EndPoint remoteEP = new IPEndPoint(IPAddress.Any, 0);
 
+            List<EndPoint> clients = new List<EndPoint>();
+
             int noOfBytesReceived;
             Byte[] bytesReceived;
             while (true)
@@ -35,16 +37,22 @@ namespace ServerSide
                 noOfBytesReceived = socket.ReceiveFrom(bytesReceived, ref remoteEP);
 
                 string message = Encoding.ASCII.GetString(bytesReceived, 0, noOfBytesReceived);
+				
+				int separatorIndex = message.IndexOf(':') + 1;
+				string tmp = message.Substring(separatorIndex);
 
-                switch (message)
+				switch (tmp)
                 {
                     case "join":
+                        clients.Add(remoteEP);
                         Console.WriteLine("client joined");
                         break;
                     case "quit":
+						clients.RemoveAt(clients.IndexOf(remoteEP));
                         Console.WriteLine("client quit");
                         break;
                     default:
+                        Console.WriteLine($"client: {message}");
                         break;
                 }
             }
