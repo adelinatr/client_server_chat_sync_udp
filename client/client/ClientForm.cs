@@ -35,11 +35,16 @@ namespace ClientChatWF
 				{
 					if (textBoxUsername.Text.Length != 0)
 					{
-						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-						remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
-						client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join"), remoteEp);
+						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);					
+						IPAddress ip= IPAddress.Parse(textBoxIPAdress.Text);
+						
+
+						remoteEp = new IPEndPoint(ip, int.Parse(textBoxPort.Text));
+						byte[] bt = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join");
+                        client.SendTo(bt, remoteEp);
 						isConnected = true;
 						statusLabel.Text = "Connected";
+
 					}
 				}
 				catch (Exception ex)
