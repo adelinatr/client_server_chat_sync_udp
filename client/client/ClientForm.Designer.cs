@@ -183,7 +183,8 @@ namespace ClientChatWF
             this.Controls.Add(this.statusLabel);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "ClientForm";
-            this.Text = "Chat";
+            //"Connected to server on port" +
+            this.Text =  $"{textBoxPort.Text}";
             this.ResizeBegin += new System.EventHandler(this.ClientForm_ResizeBegin);
             this.ResizeEnd += new System.EventHandler(this.ClientForm_ResizeEnd);
             this.ResumeLayout(false);

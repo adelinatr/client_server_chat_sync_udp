@@ -25,8 +25,9 @@ namespace ClientChatWF
 			InitializeComponent();
 			textBoxIPAdress.Text = "127.0.0.1";
 			textBoxPort.Text = "9000";
-		}
-
+            this.Text = "Disconnected";
+        }
+        
 		private void buttonJoin_Click(object sender, EventArgs e)
 		{
 			if (!isConnected)
@@ -40,8 +41,13 @@ namespace ClientChatWF
 						client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join"), remoteEp);
 						isConnected = true;
 						statusLabel.Text = "Connected";
+                    
 					}
-				}
+                    if (isConnected)
+                    {
+                        this.Text = "Connected to server on port " + $"{textBoxPort.Text}";
+                    }
+                }
 				catch (Exception ex)
 				{
 					chatLog.Text += $"{ex.Message}\r\n";
@@ -65,7 +71,8 @@ namespace ClientChatWF
 				client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:quit"), remoteEp);
 				isConnected = false;
 				statusLabel.Text = "Disconnected";
-			}
+                this.Text = "Disconnected";
+            }
 		}
 
 		private void ClientForm_ResizeBegin(object sender, EventArgs e)
