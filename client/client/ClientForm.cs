@@ -34,7 +34,6 @@ namespace ClientChatWF
 		{
 			username = name;
 			password = pass;
-			chatLog.Text += $"{username}  {password}\r\n";
 		}
 		private void ClientForm_Load(object sender, EventArgs e)
 		{
