@@ -1,0 +1,9 @@
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\bin\Debug\ClientChatWF.exe.config
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\bin\Debug\ClientChatWF.exe
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\bin\Debug\ClientChatWF.pdb
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\obj\Debug\client.csprojResolveAssemblyReference.cache
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\obj\Debug\ClientChatWF.ClientForm.resources
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\obj\Debug\ClientChatWF.Properties.Resources.resources
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\obj\Debug\client.csproj.GenerateResource.Cache
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\obj\Debug\ClientChatWF.exe
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\client\client\obj\Debug\ClientChatWF.pdb

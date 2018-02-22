@@ -1,0 +1,6 @@
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\server\bin\Debug\server.exe.config
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\server\bin\Debug\server.exe
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\server\bin\Debug\server.pdb
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\server\obj\Debug\server.csprojResolveAssemblyReference.cache
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\server\obj\Debug\server.exe
+C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\server\obj\Debug\server.pdb
