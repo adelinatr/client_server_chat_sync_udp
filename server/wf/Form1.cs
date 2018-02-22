@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace wf
 {
@@ -30,7 +31,9 @@ namespace wf
             log += "server started";
             socket.Bind(localEP);
             remoteEP = new IPEndPoint(IPAddress.Any, 0);
-            clients = new List<EndPoint>();   
+            clients = new List<EndPoint>();
+            Thread thread = new Thread(new ThreadStart(MainLoop));
+            thread.Start();
             //trebuie chemata mainloop// creat alt thread     
             textBox1.Text += log;
             }
