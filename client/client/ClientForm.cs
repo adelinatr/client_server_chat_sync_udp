@@ -14,11 +14,15 @@ namespace ClientChatWF
 {
 	public partial class ClientForm : Form
 	{
+		string username;
+		string password;
+
+		bool isConnected = false;
+
 		int oldHeight;
 		int oldWidth;
 		Socket client;
 		IPEndPoint remoteEp;
-		bool isConnected = false;
 
 		public ClientForm()
 		{
@@ -26,21 +30,28 @@ namespace ClientChatWF
 			textBoxIPAdress.Text = "127.0.0.1";
 			textBoxPort.Text = "9000";
 		}
-
+		public void UpdateCredentials(string name, string pass)
+		{
+			username = name;
+			password = pass;
+			chatLog.Text += $"{username}  {password}\r\n";
+		}
+		private void ClientForm_Load(object sender, EventArgs e)
+		{
+			Form loginform = new LoginForm(this);
+			loginform.ShowDialog();
+		}
 		private void buttonJoin_Click(object sender, EventArgs e)
 		{
 			if (!isConnected)
 			{
                 try
 				{
-					if (textBoxUsername.Text.Length != 0)
-					{
-						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-						remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
-						client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join"), remoteEp);
-						isConnected = true;
-						statusLabel.Text = "Connected";
-					}
+					client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+					remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
+					client.SendTo(Encoding.ASCII.GetBytes($"{username}:join"), remoteEp);
+					isConnected = true;
+					statusLabel.Text = "Connected";
 				}
 				catch (Exception ex)
 				{
@@ -54,7 +65,7 @@ namespace ClientChatWF
 			if (isConnected)
 			{
 				client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
-				chatLog.Text += $"{textBoxUsername.Text}:{ textBoxMessage.Text}\r\n";
+				chatLog.Text += $"{username}:{ textBoxMessage.Text}\r\n";
 				textBoxMessage.Text = "";
 			}
 		}
@@ -62,7 +73,7 @@ namespace ClientChatWF
 		{
 			if (isConnected)
 			{
-				client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:quit"), remoteEp);
+				client.SendTo(Encoding.ASCII.GetBytes($"{username}:quit"), remoteEp);
 				isConnected = false;
 				statusLabel.Text = "Disconnected";
 			}
