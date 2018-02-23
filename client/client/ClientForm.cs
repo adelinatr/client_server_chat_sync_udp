@@ -16,24 +16,62 @@ namespace ClientChatWF
 	{
 		int oldHeight;
 		int oldWidth;
-        Socket client;
-        IPEndPoint remoteEp;
+		Socket client;
+		EndPoint remoteEp;
+		bool isConnected = false;
 
-        public ClientForm()
+		public ClientForm()
 		{
 			InitializeComponent();
 			textBoxIPAdress.Text = "127.0.0.1";
 			textBoxPort.Text = "9000";
-        }
+		}
 
 		private void buttonJoin_Click(object sender, EventArgs e)
 		{
-            client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
-            client.SendTo(Encoding.ASCII.GetBytes("join"), remoteEp);
-        }
+			if (!isConnected)
+			{
+                try
+				{
+					if (textBoxUsername.Text.Length != 0)
+					{
+						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);					
+						IPAddress ip= IPAddress.Parse(textBoxIPAdress.Text);
+						
+						remoteEp = new IPEndPoint(ip, int.Parse(textBoxPort.Text));
+						byte[] bt = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join");
+                        client.SendTo(bt, remoteEp);
+						isConnected = true;
+						statusLabel.Text = "Connected";
+					}
+				}
+				catch (Exception ex)
+				{
+					chatLog.Text += $"{ex.Message}\r\n";
+				}
+			}
+		}
 
-        private void ClientForm_ResizeBegin(object sender, EventArgs e)
+		private void buttonSend_Click(object sender, EventArgs e)
+		{
+			if (isConnected)
+			{
+				client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
+				chatLog.Text += $"{textBoxUsername.Text}:{ textBoxMessage.Text}\r\n";
+				textBoxMessage.Text = "";
+			}
+		}
+		private void buttonQuit_Click(object sender, EventArgs e)
+		{
+			if (isConnected)
+			{
+				client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:quit"), remoteEp);
+				isConnected = false;
+				statusLabel.Text = "Disconnected";
+			}
+		}
+
+		private void ClientForm_ResizeBegin(object sender, EventArgs e)
 		{
 			oldHeight = this.Height;
 			oldWidth = this.Width;
@@ -54,6 +92,21 @@ namespace ClientChatWF
 			buttonSend.Left -= widthDiff;
 
 			statusLabel.Width -= widthDiff;
+		}
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			//String Data = Encoding.ASCII.GetString(data);
+			byte[] time = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:gettime");
+			client.SendTo(time, time.Length, SocketFlags.None, remoteEp);
+		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+			byte[] received_time = new byte[1024];
+			client.ReceiveFrom(received_time, ref remoteEp);
+			String time = System.Text.Encoding.UTF8.GetString(received_time);
+			label4.Text = time;
 		}
 	}
 }
