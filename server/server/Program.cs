@@ -14,11 +14,6 @@ namespace server
         [STAThread]
         static void Main()
         {
-<<<<<<< HEAD
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Server());
-=======
             Socket socket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             IPAddress ip = IPAddress.Parse("127.0.0.1");
 
@@ -71,7 +66,6 @@ namespace server
                         break;
                 }
             }
->>>>>>> 03c590f9730e23b8b85c6cc7a802eaedc8df9527
         }
     }
 }
