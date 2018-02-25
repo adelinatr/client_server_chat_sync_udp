@@ -212,7 +212,7 @@ namespace ClientChatWF
 			this.ResizeEnd += new System.EventHandler(this.ClientForm_ResizeEnd);
 			this.ResumeLayout(false);
 			this.PerformLayout();
-		}
+    }
 
 		#endregion
 		private System.Windows.Forms.Label statusLabel;
