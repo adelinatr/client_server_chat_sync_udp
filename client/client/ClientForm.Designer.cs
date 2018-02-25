@@ -2,34 +2,34 @@ using System;
 
 namespace ClientChatWF
 {
-	partial class ClientForm
-	{
-		/// <summary>
-		/// Required designer variable.
-		/// </summary>
-		private System.ComponentModel.IContainer components = null;
+    partial class ClientForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
 
-		/// <summary>
-		/// Clean up any resources being used.
-		/// </summary>
-		/// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-		protected override void Dispose(bool disposing)
-		{
-			if (disposing && (components != null))
-			{
-				components.Dispose();
-			}
-			base.Dispose(disposing);
-		}
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
 
-		#region Windows Form Designer generated code
+        #region Windows Form Designer generated code
 
-		/// <summary>
-		/// Required method for Designer support - do not modify
-		/// the contents of this method with the code editor.
-		/// </summary>
-		private void InitializeComponent()
-		{
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
             this.components = new System.ComponentModel.Container();
             this.statusLabel = new System.Windows.Forms.Label();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
@@ -197,22 +197,22 @@ namespace ClientChatWF
             this.ResumeLayout(false);
             this.PerformLayout();
 
-		}
+        }
 
-		#endregion
-		private System.Windows.Forms.Label statusLabel;
-		private System.Windows.Forms.TextBox textBoxMessage;
-		private System.Windows.Forms.Button buttonSend;
-		private System.Windows.Forms.Button buttonJoin;
-		private System.Windows.Forms.Button buttonQuit;
-		private System.Windows.Forms.TextBox textBoxIPAdress;
-		private System.Windows.Forms.TextBox textBoxPort;
-		private System.Windows.Forms.TextBox textBoxUsername;
-		private System.Windows.Forms.Label label1;
-		private System.Windows.Forms.Label label2;
-		private System.Windows.Forms.Label label3;
-		private System.Windows.Forms.TextBox chatLog;
-		private System.Windows.Forms.Label labelTime;
+        #endregion
+        private System.Windows.Forms.Label statusLabel;
+        private System.Windows.Forms.TextBox textBoxMessage;
+        private System.Windows.Forms.Button buttonSend;
+        private System.Windows.Forms.Button buttonJoin;
+        private System.Windows.Forms.Button buttonQuit;
+        private System.Windows.Forms.TextBox textBoxIPAdress;
+        private System.Windows.Forms.TextBox textBoxPort;
+        private System.Windows.Forms.TextBox textBoxUsername;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox chatLog;
+        private System.Windows.Forms.Label labelTime;
         private System.Windows.Forms.Timer timer1;
     }
 }
