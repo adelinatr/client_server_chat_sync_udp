@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
@@ -31,7 +25,7 @@ namespace ClientChatWF
 		{
 			if (!isConnected)
 			{
-                		try
+                try
 				{
 					if (textBoxUsername.Text.Length != 0)
 					{
@@ -93,37 +87,25 @@ namespace ClientChatWF
 			statusLabel.Width -= widthDiff;
 		}
 
-        private void T_Click(object sender, EventArgs e)
-        {
-
-           
-             
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
-            T.Text = DateTime.Now.ToString("hh:mm:ss tt");
+            labelTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
+     }
 
-        private void richTextBox1_TextChanged(object sender, EventArgs e)
-        {
-            
-        }
-    }
-
-		private void button1_Click(object sender, EventArgs e)
+		/*private void button1_Click(object sender, EventArgs e)
 		{
 			//String Data = Encoding.ASCII.GetString(data);
 			byte[] time = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:gettime");
 			client.SendTo(time, time.Length, SocketFlags.None, remoteEp);
 		}
 
-		private void label4_Click(object sender, EventArgs e)
+		private void _Click(object sender, EventArgs e)
 		{
 			byte[] received_time = new byte[1024];
 			client.ReceiveFrom(received_time, ref remoteEp);
 			String time = System.Text.Encoding.UTF8.GetString(received_time);
 			label4.Text = time;
-		}
-	}
+		}*/
 }
+
