@@ -1,9 +1,0 @@
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\obj\Debug\wf.csprojResolveAssemblyReference.cache
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\obj\Debug\wf.Form1.resources
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\obj\Debug\wf.Properties.Resources.resources
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\obj\Debug\wf.csproj.GenerateResource.Cache
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\bin\Debug\wf.exe.config
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\bin\Debug\wf.exe
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\bin\Debug\wf.pdb
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\obj\Debug\wf.exe
-C:\Users\Student.STEPIT\Documents\GitHub\client_server_chat_sync_udp\server\wf\obj\Debug\wf.pdb
