@@ -17,7 +17,7 @@ namespace ClientChatWF
 		int oldHeight;
 		int oldWidth;
 		Socket client;
-		IPEndPoint remoteEp;
+		EndPoint remoteEp;
 		bool isConnected = false;
 
 		public ClientForm()
@@ -32,13 +32,15 @@ namespace ClientChatWF
 		{
 			if (!isConnected)
 			{
-                try
+                		try
 				{
 					if (textBoxUsername.Text.Length != 0)
 					{
-						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-						remoteEp = new IPEndPoint(IPAddress.Parse(textBoxIPAdress.Text), int.Parse(textBoxPort.Text));
-						client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join"), remoteEp);
+						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);					
+						IPAddress ip= IPAddress.Parse(textBoxIPAdress.Text);
+						remoteEp = new IPEndPoint(ip, int.Parse(textBoxPort.Text));
+						byte[] bt = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join");
+                        			client.SendTo(bt, remoteEp);
 						isConnected = true;
 						statusLabel.Text = "Connected";
                     
@@ -96,6 +98,39 @@ namespace ClientChatWF
 			buttonSend.Left -= widthDiff;
 
 			statusLabel.Width -= widthDiff;
+		}
+
+        private void T_Click(object sender, EventArgs e)
+        {
+
+           
+             
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            T.Text = DateTime.Now.ToString("hh:mm:ss tt");
+        }
+
+        private void richTextBox1_TextChanged(object sender, EventArgs e)
+        {
+            
+        }
+    }
+
+		private void button1_Click(object sender, EventArgs e)
+		{
+			//String Data = Encoding.ASCII.GetString(data);
+			byte[] time = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:gettime");
+			client.SendTo(time, time.Length, SocketFlags.None, remoteEp);
+		}
+
+		private void label4_Click(object sender, EventArgs e)
+		{
+			byte[] received_time = new byte[1024];
+			client.ReceiveFrom(received_time, ref remoteEp);
+			String time = System.Text.Encoding.UTF8.GetString(received_time);
+			label4.Text = time;
 		}
 	}
 }
