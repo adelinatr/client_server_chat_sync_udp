@@ -31,26 +31,17 @@ namespace ClientChatWF
 		{
 			if (!isConnected)
 			{
-                try
+                		try
 				{
 					if (textBoxUsername.Text.Length != 0)
 					{
 						client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);					
 						IPAddress ip= IPAddress.Parse(textBoxIPAdress.Text);
-						
-<<<<<<< HEAD
-=======
-
->>>>>>> 03c590f9730e23b8b85c6cc7a802eaedc8df9527
 						remoteEp = new IPEndPoint(ip, int.Parse(textBoxPort.Text));
 						byte[] bt = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join");
-                        client.SendTo(bt, remoteEp);
+                        			client.SendTo(bt, remoteEp);
 						isConnected = true;
 						statusLabel.Text = "Connected";
-<<<<<<< HEAD
-=======
-
->>>>>>> 03c590f9730e23b8b85c6cc7a802eaedc8df9527
 					}
 				}
 				catch (Exception ex)
@@ -59,7 +50,6 @@ namespace ClientChatWF
 				}
 			}
 		}
-<<<<<<< HEAD
 
 		private void buttonSend_Click(object sender, EventArgs e)
 		{
@@ -80,28 +70,6 @@ namespace ClientChatWF
 			}
 		}
 
-=======
-
-		private void buttonSend_Click(object sender, EventArgs e)
-		{
-			if (isConnected)
-			{
-				client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
-				chatLog.Text += $"{textBoxUsername.Text}:{ textBoxMessage.Text}\r\n";
-				textBoxMessage.Text = "";
-			}
-		}
-		private void buttonQuit_Click(object sender, EventArgs e)
-		{
-			if (isConnected)
-			{
-				client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:quit"), remoteEp);
-				isConnected = false;
-				statusLabel.Text = "Disconnected";
-			}
-		}
-
->>>>>>> 03c590f9730e23b8b85c6cc7a802eaedc8df9527
 		private void ClientForm_ResizeBegin(object sender, EventArgs e)
 		{
 			oldHeight = this.Height;
