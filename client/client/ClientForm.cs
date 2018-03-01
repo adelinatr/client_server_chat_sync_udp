@@ -3,6 +3,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
+using System.Threading;
 
 namespace ClientChatWF
 {
@@ -53,13 +54,19 @@ namespace ClientChatWF
 
 		private void buttonSend_Click(object sender, EventArgs e)
 		{
-			if (isConnected)
-			{
-				client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
-				chatLog.Text += $"{textBoxUsername.Text}:{ textBoxMessage.Text}\r\n";
-				textBoxMessage.Text = "";
-			}
+            Thread thread = new Thread(new ThreadStart(Send));
+            thread.Start();
+
 		}
+        private void Send()
+        {
+            if (isConnected)
+            {
+                client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
+                chatLog.Text += $"{textBoxUsername.Text}:{ textBoxMessage.Text}\r\n";
+                textBoxMessage.Text = "";
+            }
+        }
 		private void buttonQuit_Click(object sender, EventArgs e)
 		{
 			if (isConnected)
