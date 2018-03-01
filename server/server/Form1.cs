@@ -73,6 +73,7 @@ namespace server
                         break;
                     default:
                         textBox1.Text += $"{user}: {text}\r\n";
+                        mServerSocket.SendTo(Encoding.ASCII.GetBytes("ping"), mRemoteEP);
                         break;
                 }
             }
@@ -91,6 +92,11 @@ namespace server
         }
 
         private void Server_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
         }

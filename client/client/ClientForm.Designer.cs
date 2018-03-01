@@ -100,6 +100,7 @@ namespace ClientChatWF
             this.textBoxIPAdress.Name = "textBoxIPAdress";
             this.textBoxIPAdress.Size = new System.Drawing.Size(110, 20);
             this.textBoxIPAdress.TabIndex = 7;
+            this.textBoxIPAdress.TextChanged += new System.EventHandler(this.textBoxIPAdress_TextChanged);
             // 
             // textBoxPort
             // 
@@ -165,11 +166,12 @@ namespace ClientChatWF
             this.labelTime.Size = new System.Drawing.Size(74, 13);
             this.labelTime.TabIndex = 18;
             this.labelTime.Text = "08: 27: 51 PM";
-
+            // 
+            // timer1
+            // 
             this.timer1.Enabled = true;
             this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-
             // 
             // ClientForm
             // 

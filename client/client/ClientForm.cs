@@ -14,8 +14,10 @@ namespace ClientChatWF
 		Socket client;
 		EndPoint remoteEp;
 		bool isConnected = false;
+        byte[] data;
+        bool pingReceived = false;
 
-		public ClientForm()
+        public ClientForm()
 		{
 			InitializeComponent();
 			textBoxIPAdress.Text = "127.0.0.1";
@@ -38,11 +40,22 @@ namespace ClientChatWF
                         			client.SendTo(bt, remoteEp);
 						isConnected = true;
 						statusLabel.Text = "Connected";
-                    
-					}
+                        data = new byte[1024];       
+
+                        Thread thread = new Thread( new ThreadStart(Receive));
+                        thread.Start();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Type your username");
+                    }
                     if (isConnected)
                     {
                         this.Text = "Connected to server on port " + $"{textBoxPort.Text}";
+                    }
+                    if(!pingReceived)
+                    {
+                        MessageBox.Show("Server Offline");
                     }
                 }
 				catch (Exception ex)
@@ -60,6 +73,10 @@ namespace ClientChatWF
 		}
         private void Send()
         {
+            void checkIfOnline()
+            {
+                
+            }
             if (isConnected)
             {
                 client.SendTo(Encoding.ASCII.GetBytes(textBoxMessage.Text), remoteEp);
@@ -67,7 +84,10 @@ namespace ClientChatWF
                 textBoxMessage.Text = "";
             }
         }
-		private void buttonQuit_Click(object sender, EventArgs e)
+
+
+
+        private void buttonQuit_Click(object sender, EventArgs e)
 		{
 			if (isConnected)
 			{
@@ -105,7 +125,22 @@ namespace ClientChatWF
         {
             labelTime.Text = DateTime.Now.ToString("hh:mm:ss tt");
         }
-     }
+
+        private void textBoxIPAdress_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Receive()
+        {
+            while( true)
+             {
+                
+                client.ReceiveFrom(data, ref remoteEp);
+                pingReceived = true;
+            }
+        }
+    }
 
 		/*private void button1_Click(object sender, EventArgs e)
 		{
