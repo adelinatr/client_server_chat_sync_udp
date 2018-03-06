@@ -34,9 +34,9 @@ namespace server
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.IPAddressBox = new System.Windows.Forms.TextBox();
             this.Port = new System.Windows.Forms.Label();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.PortTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.button1 = new System.Windows.Forms.Button();
             this.listView1 = new System.Windows.Forms.ListView();
@@ -74,13 +74,13 @@ namespace server
             this.label1.TabIndex = 1;
             this.label1.Text = "Server Logging";
             // 
-            // textBox2
+            // IPAddressBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(73, 12);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(75, 20);
-            this.textBox2.TabIndex = 2;
-            this.textBox2.Text = "127.0.0.1";
+            this.IPAddressBox.Location = new System.Drawing.Point(73, 12);
+            this.IPAddressBox.Name = "IPAddressBox";
+            this.IPAddressBox.Size = new System.Drawing.Size(75, 20);
+            this.IPAddressBox.TabIndex = 2;
+            this.IPAddressBox.Text = "127.0.0.1";
             // 
             // Port
             // 
@@ -91,13 +91,13 @@ namespace server
             this.Port.TabIndex = 3;
             this.Port.Text = "Port";
             // 
-            // textBox3
+            // PortTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(186, 12);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(75, 20);
-            this.textBox3.TabIndex = 4;
-            this.textBox3.Text = "9000";
+            this.PortTextBox.Location = new System.Drawing.Point(186, 12);
+            this.PortTextBox.Name = "PortTextBox";
+            this.PortTextBox.Size = new System.Drawing.Size(75, 20);
+            this.PortTextBox.TabIndex = 4;
+            this.PortTextBox.Text = "9000";
             // 
             // label2
             // 
@@ -116,12 +116,12 @@ namespace server
             this.button1.TabIndex = 6;
             this.button1.Text = "Start";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // listView1
             // 
             this.listView1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeader1});
-            this.listView1.Enabled = false;
             this.listView1.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
             this.listView1.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
@@ -154,9 +154,9 @@ namespace server
             this.Controls.Add(this.Users);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.textBox3);
+            this.Controls.Add(this.PortTextBox);
             this.Controls.Add(this.Port);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.IPAddressBox);
             this.Controls.Add(this.panel1);
             this.Name = "Server";
             this.Text = "Server";
@@ -173,9 +173,9 @@ namespace server
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label1;
-        private TextBox textBox2;
+        private TextBox IPAddressBox;
         private Label Port;
-        private TextBox textBox3;
+        private TextBox PortTextBox;
         private Label label2;
         private Button button1;
         private ListView listView1;
