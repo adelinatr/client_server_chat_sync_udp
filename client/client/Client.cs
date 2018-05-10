@@ -29,6 +29,12 @@ namespace ClientChatWF
 			user.Username = username_text;
 			byte[] bt = Encoding.ASCII.GetBytes($"{username_text}:join");
 			socket.SendTo(bt, remoteEp);
+
+			using (UserContext db = new UserContext())
+			{
+				db.Users.Add(user);
+				db.SaveChanges();
+			}
 		}
 
 		public void SendMsg(string username_text, string selected_user, string mNewMessage)

@@ -9,3 +9,10 @@ server/.vs
 client/client/bin/
 client/client/obj/
 client/.vs
+*.transform
+*.xml
+*.psm1
+*.dll
+*.txt
+*.psd1
+*.ps1
