@@ -11,8 +11,7 @@ namespace ClientChatWF
     {
         int oldHeight;
         int oldWidth;
-        Socket client;
-        EndPoint remoteEp;
+		Client client;
         bool isConnected = false;
         byte[] data;
         int recv;
@@ -41,11 +40,10 @@ namespace ClientChatWF
                 {
                     if (textBoxUsername.Text.Length != 0)
                     {
-                        client = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-                        IPAddress ip = IPAddress.Parse(textBoxIPAdress.Text);
-                        remoteEp = new IPEndPoint(ip, int.Parse(textBoxPort.Text));
-                        byte[] bt = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:join");
-                        client.SendTo(bt, remoteEp);
+						
+						client = new Client(textBoxIPAdress.Text, textBoxPort.Text);
+						client.SendJoinMsg(textBoxUsername.Text);
+
                         isConnected = true;
 
                         Thread thread_receive = new Thread(new ThreadStart(Receive));
@@ -95,11 +93,7 @@ namespace ClientChatWF
 
         private void Send()
         {
-            byte[] data = Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:{selected_user}#{mNewMessage}");
-            if (data != null)
-            {
-                client.SendTo(data, remoteEp);
-            }
+			client.SendMsg(textBoxUsername.Text, selected_user, mNewMessage);
             send = true;
         }
 
@@ -107,8 +101,8 @@ namespace ClientChatWF
         {
             if (isConnected)
             {
-                client.SendTo(Encoding.ASCII.GetBytes($"{textBoxUsername.Text}:quit"), remoteEp);
-                isConnected = false;
+				client.SendQuit(textBoxUsername.Text);
+				isConnected = false;
                 if (receivedBack)
                 {
                     statusLabel.Text = "Disconnected";
@@ -154,7 +148,7 @@ namespace ClientChatWF
         {
             if (data != null)
             {
-                recv = client.ReceiveFrom(data, ref remoteEp);
+                recv = client.Receive(data);
                 chatLog.Text += $"{textBoxUsername.Text}: {mNewMessage}\r\n";
                 receivedBack = true;
             }
