@@ -83,7 +83,7 @@ namespace server
 
         void UpdateClientList()
         {
-            if (listView1.InvokeRequired)
+            /*if (listView1.InvokeRequired)
             {
                 listView1.Clear();
 
@@ -103,7 +103,7 @@ namespace server
                     ListViewItem lvi = new ListViewItem(mClients[i].ToString());
                     listView1.Items.Add(lvi);
                 }
-            }
+            }*/
         }
 
 		private EndPoint FindRemoteClient(string user)
